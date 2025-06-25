@@ -20,7 +20,7 @@ function same(arr1: number[], arr2: number[]): boolean {
 
   return true;
 }
-console.log(same([1, 2, 3, 2], [9, 1, 4, 4]));
+// console.log(same([1, 2, 3, 2], [9, 1, 4, 4]));
 
 // exercise
 function validAnagram(word1: string, word2: string): boolean {
@@ -66,4 +66,78 @@ function validAnagramInst(first: string, second: string): boolean {
   return true;
 }
 
-console.log(validAnagramInst("anagram", "nagaram"));
+// console.log(validAnagramInst("anagram", "nagaram"));
+
+// exercise 1
+
+function sameFrequency(int1: number, int2: number): boolean {
+  if (int1.toString().length !== int1.toString().length) return false;
+
+  let firstInt: Record<number, number> = {};
+  let secondInt: Record<number, number> = {};
+
+  for (const val of int1.toString()) {
+    firstInt[Number(val)] = (firstInt[Number(val)] || 0) + 1;
+  }
+
+  for (const val of int2.toString()) {
+    secondInt[Number(val)] = (secondInt[Number(val)] || 0) + 1;
+  }
+
+  // console.log(firstInt);
+  // console.log(secondInt);
+
+  for (const key in firstInt) {
+    if (!(key in secondInt)) return false;
+
+    if (firstInt[key] !== secondInt[key]) return false;
+  }
+
+  return true;
+}
+
+// console.log(sameFrequency(3589578, 3589578));
+
+// exercise 2
+function constructNote(msg: string, letters: string): boolean {
+  if (letters.length < msg.length) return false;
+
+  let msgFreq: Record<string, number> = {};
+  let lettersFreq: Record<string, number> = {};
+
+  for (const val of msg) {
+    msgFreq[val] = (msgFreq[val] || 0) + 1;
+  }
+
+  for (const val of letters) {
+    lettersFreq[val] = (lettersFreq[val] || 0) + 1;
+  }
+
+  console.log(msgFreq);
+  console.log(lettersFreq);
+  for (const key in msgFreq) {
+    if (!(key in lettersFreq)) return false;
+
+    if (lettersFreq[key] < msgFreq[key]) return false;
+  }
+
+  return true;
+}
+
+// console.log(constructNote("aa", "abc"));
+
+function findAllDuplicates(arr: number[]) {
+  let temp = new Set();
+  let ans: number[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (temp.has(arr[i])) {
+      ans.push(arr[i]);
+    } else {
+      temp.add(arr[i]);
+    }
+  }
+
+  return ans;
+}
+
+console.log(findAllDuplicates([4, 3, 2, 1, 0, 1, 2, 3]));
