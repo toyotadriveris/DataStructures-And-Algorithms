@@ -106,4 +106,27 @@ function isSubsequence(str1: string, str2: string): boolean {
   }
   return false;
 }
-console.log(isSubsequence("abc", "acb"));
+// console.log(isSubsequence("abc", "acb"));
+function findPair(arr: number[], target: number): boolean {
+  if (!arr || arr.length === 0) return false;
+
+  // if (target < 0) target * -1;
+  arr.sort((a, b) => a - b);
+  console.log(arr);
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let sum = arr[left] - arr[right];
+
+    console.log(sum);
+    if (sum === target || sum === target * -1) return true;
+    if (sum > target && arr[left] > arr[right]) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+  return false;
+}
+console.log(findPair([8, 6, 2, 4, 1, 0, 2, 5, 13], 1));
