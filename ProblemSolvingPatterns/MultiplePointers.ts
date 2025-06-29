@@ -116,7 +116,7 @@ function findPair(arr: number[], target: number): boolean {
   let left = 0;
   let right = arr.length - 1;
 
-  while (left < right) {
+  while (left < arr.length) {
     let sum = arr[left] - arr[right];
 
     console.log(sum);
